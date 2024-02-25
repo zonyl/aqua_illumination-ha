@@ -26,7 +26,7 @@ async def async_setup_platform(hass, config, add_devices, discovery_info=None):
         if not device.connected:
             raise PlatformNotReady
 
-        all_devices.append(AIAutomatedScheduleSwitch(device))
+        all_devices.append(AIAutomatedScheduleSwitch(device, hass))
 
     add_devices(all_devices)
 
@@ -34,11 +34,12 @@ async def async_setup_platform(hass, config, add_devices, discovery_info=None):
 class AIAutomatedScheduleSwitch(SwitchEntity):
     """Representation of AI light schedule switch"""
 
-    def __init__(self, device):
+    def __init__(self, device, hass):
         """Initialise the AI switch"""
         self._device = device
         self._name = self._device.name + ' scheduled mode'
         self._state = None
+        self._hass = hass
     
     @property
     def name(self):
@@ -90,19 +91,19 @@ class AIAutomatedScheduleSwitch(SwitchEntity):
 
     def turn_on(self, **kwargs):
         """Enable schedule mode"""
-        
-#        await self._device.raw_device.async_set_schedule_state(True)
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(self._device.raw_device.async_set_schedule_state(True))
-        loop.close()
 
+        self._turn_to_state(self, True)
+        
     def turn_off(self):
         """Disable schedule mode"""
 
-#        await self._device.raw_device.async_set_schedule_state(False)
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(self._device.raw_device.async_set_schedule_state(False))
-        loop.close()
+        self._turn_to_state(self, False)
+
+    def _turn_to_state(self, state):
+        asyncio.run_coroutine_threadsafe(
+                self._device.raw_device.async_set_schedule_state(state),
+                self._hass.loop
+                )
 
     async def async_update(self):
         """Fetch new state data for scheduled mode"""
