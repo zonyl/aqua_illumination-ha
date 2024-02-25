@@ -1,5 +1,6 @@
 import logging
 import voluptuous as vol
+import asyncio
 
 # Import the device class from the component that you want to support
 from homeassistant.components.switch import SwitchEntity, PLATFORM_SCHEMA
