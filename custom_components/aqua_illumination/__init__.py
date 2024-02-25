@@ -13,7 +13,7 @@ REQUIREMENTS = ['AquaIPy==2.0.1']
 _LOGGER = logging.getLogger(__name__)
 
 ATTR_LAST_UPDATE = 'last_update'
-DOMAIN = 'aquaillumination'
+DOMAIN = 'aqua_illumination'
 DATA_INDEX = "data_" + DOMAIN
 
 CONFIG_SCHEMA = vol.Schema({
