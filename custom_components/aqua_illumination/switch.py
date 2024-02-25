@@ -87,7 +87,7 @@ class AIAutomatedScheduleSwitch(SwitchEntity):
 
         return self._device.mac_addr
 
-    async def turn_on(self, **kwargs):
+    def turn_on(self, **kwargs):
         """Enable schedule mode"""
         
 #        await self._device.raw_device.async_set_schedule_state(True)
@@ -95,7 +95,7 @@ class AIAutomatedScheduleSwitch(SwitchEntity):
         loop.run_until_complete(self._device.raw_device.async_set_schedule_state(True))
         loop.close()
 
-    async def turn_off(self):
+    def turn_off(self):
         """Disable schedule mode"""
 
 #        await self._device.raw_device.async_set_schedule_state(False)
