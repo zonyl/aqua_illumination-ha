@@ -4,6 +4,6 @@
   "documentation": "https://github.com/zonyl/aqua_illumination-ha/blob/main/README.md",
   "dependencies": [],
   "codeowners": ["@mcclown","@zonyl"],
-  "version": "2024.01.01",
+  "version": "2024.02.01",
   "requirements": ["git+https://github.com/mcclown/AquaIPy.git@master#aquaipy==2.0.1"]
 }
