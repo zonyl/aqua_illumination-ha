@@ -92,12 +92,12 @@ class AIAutomatedScheduleSwitch(SwitchEntity):
     def turn_on(self, **kwargs):
         """Enable schedule mode"""
 
-        self._turn_to_state(self, True)
+        self._turn_to_state(True)
         
     def turn_off(self):
         """Disable schedule mode"""
 
-        self._turn_to_state(self, False)
+        self._turn_to_state(False)
 
     def _turn_to_state(self, state):
         asyncio.run_coroutine_threadsafe(
