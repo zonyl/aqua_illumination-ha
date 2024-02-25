@@ -90,12 +90,18 @@ class AIAutomatedScheduleSwitch(SwitchEntity):
     async def turn_on(self, **kwargs):
         """Enable schedule mode"""
         
-        await self._device.raw_device.async_set_schedule_state(True)
+#        await self._device.raw_device.async_set_schedule_state(True)
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self._device.raw_device.async_set_schedule_state(True))
+        loop.close()
 
     async def turn_off(self):
         """Disable schedule mode"""
-        
-        await self._device.raw_device.async_set_schedule_state(False)
+
+#        await self._device.raw_device.async_set_schedule_state(False)
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self._device.raw_device.async_set_schedule_state(False))
+        loop.close()
 
     async def async_update(self):
         """Fetch new state data for scheduled mode"""
