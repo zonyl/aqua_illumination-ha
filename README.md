@@ -25,7 +25,7 @@ A brief rundown of features/caveats:
 A sample configuration is shown below. This adds a light entity for each of the colour channels called <name>_<channel name>.
 
 ```YAML
-aquaillumination:
+aqua_illumination:
   - host: 192.168.1.100
     name: sump ai
   - host: 192.168.1.101
